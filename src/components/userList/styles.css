@@ -1,0 +1,53 @@
+/* Estilos generales */
+body {
+    background-color: #2a064c; /* Morado oscuro retro */
+    font-family: 'Press Start 2P', cursive; /* Fuente pixelada estilo arcade */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Contenedor de la tabla */
+  div {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #52057b, #892cdc); /* Degradado retro */
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.5); /* Efecto neón */
+  }
+  
+  /* Estilos de la tabla */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffccff; /* Rosa pastel retro */
+    font-size: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  /* Encabezados */
+  th {
+    background: #ff00ff; /* Magenta neón */
+    padding: 15px;
+    text-transform: uppercase;
+    color: #000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Filas */
+  td {
+    padding: 12px;
+    border-bottom: 2px solid #ff66ff; /* Rosa neón */
+  }
+  
+  /* Efecto hover */
+  tr:hover {
+    background: #8a2be2; /* Morado vibrante */
+    color: #fff;
+    transition: 0.3s;
+  }
+  
+    

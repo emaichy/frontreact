@@ -23,7 +23,7 @@ export const UserList = ({ users = [], onUserAdded }) => {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/users/", {
+      const response = await fetch("http://18.220.73.186/users/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser)

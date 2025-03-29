@@ -5,8 +5,9 @@ export const UserList = ({ users = [], onUserAdded }) => {
   const [search, setSearch] = useState("");
   const [newUser, setNewUser] = useState({
     name: "",
-    lastname: "",
-    email: ""
+    last_name: "",
+    email: "",
+    password: "" // Agregar campo de contraseña
   });
 
   // Manejar cambios en los inputs
@@ -16,7 +17,7 @@ export const UserList = ({ users = [], onUserAdded }) => {
 
   // Enviar datos al backend para crear un usuario
   const handleCreateUser = async () => {
-    if (!newUser.name || !newUser.lastname || !newUser.email) {
+    if (!newUser.name || !newUser.last_name || !newUser.email || !newUser.password) {
       alert("Todos los campos son obligatorios");
       return;
     }
@@ -31,7 +32,7 @@ export const UserList = ({ users = [], onUserAdded }) => {
       if (response.ok) {
         const createdUser = await response.json();
         alert("Usuario creado exitosamente!");
-        setNewUser({ name: "", lastname: "", email: "" }); // Limpiar formulario
+        setNewUser({ name: "", last_name: "", email: "", password: "" }); // Limpiar formulario
         onUserAdded(createdUser); // Actualizar lista de usuarios
       } else {
         alert("Error al crear el usuario");
@@ -71,7 +72,7 @@ export const UserList = ({ users = [], onUserAdded }) => {
         />
         <input
           type="text"
-          name="lastname"
+          name="last_name"
           placeholder="Apellido"
           value={newUser.lastname}
           onChange={handleInputChange}
@@ -81,6 +82,13 @@ export const UserList = ({ users = [], onUserAdded }) => {
           name="email"
           placeholder="Correo"
           value={newUser.email}
+          onChange={handleInputChange}
+        />
+        <input
+          type="password" // Campo de contraseña
+          name="password"
+          placeholder="Contraseña"
+          value={newUser.password}
           onChange={handleInputChange}
         />
         <button onClick={handleCreateUser} className="create-button">Crear Usuario</button>
@@ -102,7 +110,7 @@ export const UserList = ({ users = [], onUserAdded }) => {
               <tr key={usuario.id}>
                 <td>{usuario.id}</td>
                 <td>{usuario.name}</td>
-                <td>{usuario.lastname}</td>
+                <td>{usuario.last_name}</td>
                 <td>{usuario.email}</td>
               </tr>
             ))

@@ -1,32 +1,120 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 
-export const UserList = ({ users = [] }) => {
+export const UserList = ({ users = [], onUserAdded }) => {
+  const [search, setSearch] = useState("");
+  const [newUser, setNewUser] = useState({
+    name: "",
+    lastname: "",
+    email: ""
+  });
+
+  // Manejar cambios en los inputs
+  const handleInputChange = (e) => {
+    setNewUser({ ...newUser, [e.target.name]: e.target.value });
+  };
+
+  // Enviar datos al backend para crear un usuario
+  const handleCreateUser = async () => {
+    if (!newUser.name || !newUser.lastname || !newUser.email) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/users/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser)
+      });
+
+      if (response.ok) {
+        const createdUser = await response.json();
+        alert("Usuario creado exitosamente!");
+        setNewUser({ name: "", lastname: "", email: "" }); // Limpiar formulario
+        onUserAdded(createdUser); // Actualizar lista de usuarios
+      } else {
+        alert("Error al crear el usuario");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("No se pudo conectar con el servidor");
+    }
+  };
+
+  // Filtrar usuarios por búsqueda
+  const filteredUsers = users.filter(usuario =>
+    usuario.name.toLowerCase().includes(search.toLowerCase()) ||
+    usuario.lastname.toLowerCase().includes(search.toLowerCase()) ||
+    usuario.email.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div>
+      {/* Barra de búsqueda */}
+      <input
+        type="text"
+        placeholder="Buscar usuario..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="search-bar"
+      />
+
+      {/* Formulario para crear usuario */}
+      <div className="form-container">
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          value={newUser.name}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Apellido"
+          value={newUser.lastname}
+          onChange={handleInputChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Correo"
+          value={newUser.email}
+          onChange={handleInputChange}
+        />
+        <button onClick={handleCreateUser} className="create-button">Crear Usuario</button>
+      </div>
+
+      {/* Tabla de usuarios */}
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Lastname</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((usuario) => (
-            <tr key={usuario.id}>
-              <td>{usuario.id}</td>
-              <td>{usuario.name}</td>
-              <td>{usuario.email}</td>
-              <td>{usuario.lastname}</td> 
+          {filteredUsers.length > 0 ? (
+            filteredUsers.map((usuario) => (
+              <tr key={usuario.id}>
+                <td>{usuario.id}</td>
+                <td>{usuario.name}</td>
+                <td>{usuario.lastname}</td>
+                <td>{usuario.email}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">No hay usuarios encontrados</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
 };
-
 
 export default UserList;

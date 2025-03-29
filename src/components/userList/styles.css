@@ -1,53 +1,112 @@
 /* Estilos generales */
 body {
-    background-color: #2a064c; /* Morado oscuro retro */
-    font-family: 'Press Start 2P', cursive; /* Fuente pixelada estilo arcade */
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  /* Contenedor de la tabla */
-  div {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    background: linear-gradient(135deg, #52057b, #892cdc); /* Degradado retro */
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.5); /* Efecto neón */
-  }
-  
-  /* Estilos de la tabla */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffccff; /* Rosa pastel retro */
-    font-size: 30px;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  /* Encabezados */
-  th {
-    background: #ff00ff; /* Magenta neón */
-    padding: 15px;
-    text-transform: uppercase;
-    color: #000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Filas */
-  td {
-    padding: 12px;
-    border-bottom: 2px solid #ff66ff; /* Rosa neón */
-  }
-  
-  /* Efecto hover */
-  tr:hover {
-    background: #8a2be2; /* Morado vibrante */
-    color: #fff;
-    transition: 0.3s;
-  }
-  
-    
+  background-color: #2a064c; /* Morado oscuro retro */
+  font-family: 'Press Start 2P', cursive; /* Fuente pixelada estilo arcade */
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Contenedor de la tabla */
+div {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #52057b, #892cdc); /* Degradado retro */
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.5); /* Efecto neón */
+}
+
+/* Estilos de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffccff; /* Rosa pastel retro */
+  font-size: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Encabezados */
+th {
+  background: #ff00ff; /* Magenta neón */
+  padding: 15px;
+  text-transform: uppercase;
+  color: #000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Filas */
+td {
+  padding: 12px;
+  border-bottom: 2px solid #ff66ff; /* Rosa neón */
+}
+
+/* Efecto hover */
+tr:hover {
+  background: #8a2be2; /* Morado vibrante */
+  color: #fff;
+  transition: 0.3s;
+}
+
+/* FORMULARIO - Entrada de datos */
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #ff00ff; /* Magenta neón */
+  border-radius: 8px;
+  background: #2a064c;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0px 0px 8px rgba(255, 0, 255, 0.7);
+}
+
+/* BOTÓN CREAR USUARIO */
+.create-button {
+  padding: 12px 20px;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+  border: 3px solid #ff00ff;
+  background: #52057b;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(255, 0, 255, 0.8);
+}
+
+.create-button:hover {
+  background: #ff00ff;
+  color: #000;
+  box-shadow: 0px 0px 25px rgba(255, 0, 255, 1);
+  transform: scale(1.1);
+}
+
+/* MENSAJES */
+.message {
+  margin-top: 15px;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success {
+  background-color: rgba(0, 255, 0, 0.2);
+  color: #0f0;
+  border: 2px solid #0f0;
+}
+
+.error {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #f00;
+  border: 2px solid #f00;
+}
